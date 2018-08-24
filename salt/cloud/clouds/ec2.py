@@ -4141,6 +4141,10 @@ def create_keypair(kwargs=None, call=None):
                      provider=get_provider(),
                      opts=__opts__,
                      sigver='4')
+
+    if 'error' in data[0]:
+        return data[0]['error']
+
     keys = [x for x in data[0] if 'requestId' not in x]
 
     return (keys, data[1])
